@@ -65,16 +65,6 @@ if method != "POST":
     print("Expected POST")
     os._exit(0)
 
-def GetTamaName(tama_id):
-    if tama_id >= len(tamagotchi) or tama_id < 0:
-        return "Unknown #"+str(tama_id)
-    
-    tamaName = tamagotchi[tama_id]
-    if tamaName == "":
-        tamaName = "Unknown #"+str(tama_id)
-    
-    return tamaName
-    
 def InputValidation(password):
     if len(password) != 14:
         return False

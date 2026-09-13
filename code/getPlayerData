@@ -33,7 +33,7 @@ import hashlib
 #    SOFTWARE.
 
 
-tamagotchi = ["", "Aokumotchi", "Pinkbotchi"]
+tamagotchi = ["", "Aokumotchi", "Pinkbotchi", "Mitsumarutchi"]
 
 passwordchars1  = "0123456789ABCDEF" 
 passwordchars2  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0"
@@ -66,12 +66,13 @@ if method != "POST":
     os._exit(0)
 
 def GetTamaName(tama_id):
+    default_name = "Unknown #"+str(tama_id)
     if tama_id >= len(tamagotchi) or tama_id < 0:
-        return "Unknown #"+str(tama_id)
+        return default_name
     
     tamaName = tamagotchi[tama_id]
     if tamaName == "":
-        tamaName = "Unknown #"+str(tama_id)
+        tamaName = default_name
     
     return tamaName
     
