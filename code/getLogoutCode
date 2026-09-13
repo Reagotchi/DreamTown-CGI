@@ -34,6 +34,12 @@ import random
 #    SOFTWARE.
 
 
+TYPE_MEAL = 0
+TYPE_SNACK = 1
+TYPE_CROWN = 2
+TYPE_NECKLACE = 3
+TYPE_BRACELET = 4
+TYPE_RING = 5
 
 passwordchars1  = "0123456789ABCDEF" 
 passwordchars2  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0"
@@ -52,6 +58,17 @@ step13count_add = [[1, 2, 3, 4, 5, 6, 7, 8],
                   [8, 1, 2, 3, 4, 5, 6, 7]]
                          
 
+types = [TYPE_MEAL, TYPE_SNACK]
+types_special = [TYPE_CROWN, TYPE_NECKLACE, TYPE_BRACELET, TYPE_RING]
+
+types_limit = {
+    TYPE_MEAL: 29,
+    TYPE_SNACK: 29,
+    TYPE_CROWN: 14,
+    TYPE_NECKLACE: 14,
+    TYPE_BRACELET: 14,
+    TYPE_RING: 14
+}
 
 PrintHeaders()
 
@@ -82,13 +99,18 @@ def InputValidation(password):
 def GetItem(special):
     #check item input
     if not special:
-        itemType = random.randrange(0, 2)
+        itemType = random.choice(types)
     else:
-        itemType = random.randrange(2, 6)
-    itemId = random.randrange(0, 30)
-    if itemType == 0:
-        pass
-    if itemType == 1:
+        itemType = random.choice(types_special)
+    itemId = random.randrange(0, types_limit[itemType]+1)
+        
+
+    if itemType == TYPE_MEAL:
+        if itemId > 29:
+            itemId = 29
+    elif itemType == TYPE_SNACK:
+        if itemId > 29:
+            itemId = 29
         itemId += 30;
     else:
         if itemId > 14:
@@ -96,7 +118,6 @@ def GetItem(special):
         itemId += (itemType-2) * 15;
         itemType = 2;
     return [itemId, itemType]
-    
 
 
 def GetName(password, stepCount):
